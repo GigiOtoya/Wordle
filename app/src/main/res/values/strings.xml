@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Wordle</string>
+    <string name="reset">Reset</string>
+    <string name="guess1">Guess #1</string>
+    <string name="guess2">Guess #2</string>
+    <string name="guess3">Guess #3</string>
+    <string name="submitBtn">Submit</string>
+    <string name="hint"></string>
+</resources>
