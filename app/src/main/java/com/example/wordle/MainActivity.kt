@@ -1,14 +1,18 @@
 package com.example.wordle
 
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
+import androidx.core.content.ContextCompat
+
 
 class MainActivity : AppCompatActivity() {
-    var wordToGuess = FourLetterWordList.getRandomFourLetterWord()
-    var tries = 0
+    private var wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+    private var wordList = FourLetterWordList.getAllFourLetterWords().map { it.uppercase() }
+    private var tries = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         val userInput = findViewById<EditText>(R.id.userInput)
         val submitBtn = findViewById<Button>(R.id.submitBtn)
         val tvIDs = arrayOf(
-            arrayOf<Int>(R.id.r0c0,R.id.r0c1,R.id.r0c2,R.id.r0c3),
-            arrayOf<Int>(R.id.r1c0,R.id.r1c1,R.id.r1c2,R.id.r1c3),
-            arrayOf<Int>(R.id.r2c0,R.id.r2c1,R.id.r2c2,R.id.r2c3)
+            arrayOf(R.id.r0c0,R.id.r0c1,R.id.r0c2,R.id.r0c3),
+            arrayOf(R.id.r1c0,R.id.r1c1,R.id.r1c2,R.id.r1c3),
+            arrayOf(R.id.r2c0,R.id.r2c1,R.id.r2c2,R.id.r2c3)
         )
 
         userInput.addTextChangedListener(object : TextWatcher {
@@ -35,39 +39,42 @@ class MainActivity : AppCompatActivity() {
         submitBtn.setOnClickListener {
             val word = userInput.text.toString().uppercase()
             println(word)
-            insertWord(word, tvIDs)
-            if (word == wordToGuess){
-                Toast.makeText(it.context, "Success", Toast.LENGTH_SHORT).show()
+            if (checkValid(word)) {
+                insertWord(word, tvIDs)
+
+                if (checkGuess(word)) {
+                    userInput.isEnabled = false
+                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                }
+                tries++
             }
-            tries++
-            println(tries)
+            else {
+                Toast.makeText(it.context, "Not in Word List", Toast.LENGTH_SHORT).show()
+            }
             userInput.text = null
             if (tries == 3) {
                 userInput.isEnabled = false
             }
         }
     }
-
+    // check if word is in list
+    private fun checkValid(guess: String) :Boolean {
+        return guess in wordList
+    }
+    // insert guess into table
     private fun insertWord(word: String, ids: Array<Array<Int>>) {
-        for (i in 0..3){
+        for (i in 0..3) {
             val tv = findViewById<TextView>(ids[tries][i])
             tv.text = word[i].toString()
+            if (word[i] == wordToGuess[i]) {
+                tv.setTextColor(ContextCompat.getColor(this, R.color.Teal_A400))
+            } else if (word[i] in wordToGuess) {
+                tv.setTextColor(ContextCompat.getColor(this, R.color.Lime_A200))
+            }
         }
     }
-    private fun checkGuess(guess: String) : String {
-
-        var result = ""
-        for (i in 0..3) {
-            if (guess[i] == wordToGuess[i]) {
-                result += "o"
-            }
-            else if (guess[i] in wordToGuess) {
-                result += "+"
-            }
-            else {
-                result += "x"
-            }
-        }
-        return result
+    // check if guess matches the word
+    private fun checkGuess(guess: String) : Boolean {
+        return guess == wordToGuess
     }
 }
