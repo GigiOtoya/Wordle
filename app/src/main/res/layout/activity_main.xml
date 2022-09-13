@@ -7,6 +7,10 @@
     android:background="@color/gray_900"
     tools:context=".MainActivity">
 
+    <nl.dionsegijn.konfetti.xml.KonfettiView
+        android:id="@+id/konfettiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/userInputContainer"
@@ -53,12 +57,12 @@
         android:id="@+id/tableLayout"
         android:layout_width="410dp"
         android:layout_height="294dp"
+        android:layout_marginTop="12dp"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/resetBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userInputContainer"
-        app:layout_constraintVertical_bias="0.043">
+        app:layout_constraintTop_toBottomOf="@id/userInputContainer">
 
         <TableRow
             android:id="@+id/r0"
@@ -76,10 +80,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r0c1"
@@ -89,10 +93,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r0c2"
@@ -102,10 +106,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r0c3"
@@ -115,11 +119,12 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
         </TableRow>
+
         <TableRow
             android:id="@+id/r1"
             android:layout_width="match_parent"
@@ -136,10 +141,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r1c1"
@@ -149,10 +154,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r1c2"
@@ -162,10 +167,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r1c3"
@@ -175,10 +180,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
         </TableRow>
 
         <TableRow
@@ -197,10 +202,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r2c1"
@@ -210,10 +215,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r2c2"
@@ -223,10 +228,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/r2c3"
@@ -236,10 +241,10 @@
                 android:layout_marginHorizontal="2dp"
                 android:background="@drawable/rounded_corner"
                 android:text=""
-                android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textSize="65sp" />
+                android:textColor="@color/white"
+                android:textSize="65sp"
+                android:textStyle="bold" />
         </TableRow>
 
     </TableLayout>
@@ -249,8 +254,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="@string/reset"
         android:backgroundTint="@color/blueGray_800"
+        android:text="@string/reset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -7,7 +7,11 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.core.content.ContextCompat
-
+import nl.dionsegijn.konfetti.core.Party
+import nl.dionsegijn.konfetti.core.Position
+import nl.dionsegijn.konfetti.core.emitter.Emitter
+import nl.dionsegijn.konfetti.xml.KonfettiView
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private var wordToGuess = FourLetterWordList.getRandomFourLetterWord()
@@ -20,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         val userInput = findViewById<EditText>(R.id.userInput)
         val submitBtn = findViewById<Button>(R.id.submitBtn)
+        val resetBtn = findViewById<Button>(R.id.resetBtn)
         val tvIDs = arrayOf(
             arrayOf(R.id.r0c0,R.id.r0c1,R.id.r0c2,R.id.r0c3),
             arrayOf(R.id.r1c0,R.id.r1c1,R.id.r1c2,R.id.r1c3),
@@ -35,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             override fun afterTextChanged(p0: Editable?) {
             }
         })
-
+        // Submit Button
         submitBtn.setOnClickListener {
             val word = userInput.text.toString().uppercase()
             println(word)
@@ -45,6 +50,16 @@ class MainActivity : AppCompatActivity() {
                 if (checkGuess(word)) {
                     userInput.isEnabled = false
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+                    val party = Party(
+                        speed = 0f,
+                        maxSpeed = 30f, damping = 0.9f,
+                        spread = 360,
+                        colors = listOf(0xfce18a, 0xff726d, 0xf4306d, 0xb48def),
+                        emitter = Emitter(duration = 100, TimeUnit.MILLISECONDS).max(100),
+                        position = Position.Relative(0.5, 0.3)
+                    )
+                    val konfettiView = findViewById<KonfettiView>(R.id.konfettiView)
+                    konfettiView.start(party)
                 }
                 tries++
             }
@@ -55,6 +70,13 @@ class MainActivity : AppCompatActivity() {
             if (tries == 3) {
                 userInput.isEnabled = false
             }
+        }
+
+        // Reset Button
+        resetBtn.setOnClickListener {
+            val mIntent = intent
+            finish()
+            startActivity(mIntent)
         }
     }
     // check if word is in list
