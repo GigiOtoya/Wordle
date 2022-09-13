@@ -74,9 +74,19 @@ class MainActivity : AppCompatActivity() {
 
         // Reset Button
         resetBtn.setOnClickListener {
-            val mIntent = intent
-            finish()
-            startActivity(mIntent)
+//            val mIntent = intent
+//            finish()
+//            startActivity(mIntent)
+            tries = 0
+            wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+            userInput.isEnabled = true
+            for (i in 0..2){
+                for (j in 0..3){
+                    val tv = findViewById<TextView>(tvIDs[i][j])
+                    tv.setTextColor(ContextCompat.getColor(this, R.color.white))
+                    tv.text = ""
+                }
+            }
         }
     }
     // check if word is in list
