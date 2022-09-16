@@ -6,5 +6,4 @@
     <string name="guess3">Guess #3</string>
     <string name="submitBtn">Submit</string>
     <string name="hint"></string>
-    <string name="tryAgainMsg">Try Again?</string>
 </resources>

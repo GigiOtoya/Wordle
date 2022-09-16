@@ -28,15 +28,23 @@ class MainActivity : AppCompatActivity() {
         // For Debug
         println(wordToGuess)
 
-        // Set tootip message and colors
+        //Colors:
         val teal = ContextCompat.getColor(this, R.color.Teal_A400)
         val yellow = ContextCompat.getColor(this, R.color.Lime_A200)
+
+        // Show Answer
+        var answer = SpannableStringBuilder()
+            .append("Answer: ")
+            .color(teal, { append(wordToGuess+"\n")})
+            .append("Try Again?")
+
+        // Set tootip message and colors
         val tipsText = SpannableStringBuilder()
             .color(teal, { append("Teal: ") })
             .append("letter in correct spot\n")
             .color(yellow, { append("Yellow: ")})
             .append("letter in wrong spot")
-        findViewById<TextView>(R.id.tips).setText(tipsText)
+        findViewById<TextView>(R.id.tips).text = tipsText
 
         val userInput = findViewById<EditText>(R.id.userInput)
         val submitBtn = findViewById<Button>(R.id.submitBtn)
@@ -84,6 +92,7 @@ class MainActivity : AppCompatActivity() {
                 tries++
                 if (tries == 3) {
                     userInput.isEnabled = false
+                    tryAgainMsg.text = answer
                     tryAgainMsg.isVisible = true
                 }
             }
@@ -96,19 +105,25 @@ class MainActivity : AppCompatActivity() {
 
         // Reset Button
         resetBtn.setOnClickListener {
-            val mIntent = intent
-            finish()
-            startActivity(mIntent)
-//            tries = 0
-//            wordToGuess = FourLetterWordList.getRandomFourLetterWord()
-//            userInput.isEnabled = true
-//            for (i in 0..2){
-//                for (j in 0..3){
-//                    val tv = findViewById<TextView>(tvIDs[i][j])
-//                    tv.setTextColor(ContextCompat.getColor(this, R.color.white))
-//                    tv.text = ""
-//                }
-//            }
+//            val mIntent = intent
+//            finish()
+//            startActivity(mIntent)
+            tries = 0
+            wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+            answer = SpannableStringBuilder()
+                .append("Answer: ")
+                .color(teal, { append(wordToGuess+"\n")})
+                .append("Try Again?")
+
+            tryAgainMsg.text = ""
+            userInput.isEnabled = true
+            for (i in 0..2){
+                for (j in 0..3){
+                    val tv = findViewById<TextView>(tvIDs[i][j])
+                    tv.setTextColor(ContextCompat.getColor(this, R.color.white))
+                    tv.text = ""
+                }
+            }
         }
     }
     // check if word is in list
