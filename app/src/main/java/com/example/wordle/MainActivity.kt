@@ -4,14 +4,17 @@ package com.example.wordle
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
+import android.text.SpannableStringBuilder
 import android.text.TextWatcher
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.text.color
 import androidx.core.view.isVisible
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
 import nl.dionsegijn.konfetti.xml.KonfettiView
+import org.w3c.dom.Text
 import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
@@ -21,7 +24,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // For Debug
         println(wordToGuess)
+
+        // Set tootip message and colors
+        val teal = ContextCompat.getColor(this, R.color.Teal_A400)
+        val yellow = ContextCompat.getColor(this, R.color.Lime_A200)
+        val tipsText = SpannableStringBuilder()
+            .color(teal, { append("Teal: ") })
+            .append("letter in correct spot\n")
+            .color(yellow, { append("Yellow: ")})
+            .append("letter in wrong spot")
+        val tipsTextView = findViewById<TextView>(R.id.tips).setText(tipsText)
 
         val userInput = findViewById<EditText>(R.id.userInput)
         val submitBtn = findViewById<Button>(R.id.submitBtn)
