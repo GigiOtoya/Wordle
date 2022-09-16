@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
     private var wordToGuess = FourLetterWordList.getRandomFourLetterWord()
     private var wordList = FourLetterWordList.getAllFourLetterWords().map { it.uppercase() }
     private var tries = 0
+    private var streakCounter = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -50,11 +52,20 @@ class MainActivity : AppCompatActivity() {
         val submitBtn = findViewById<Button>(R.id.submitBtn)
         val resetBtn = findViewById<Button>(R.id.resetBtn)
         val tryAgainMsg = findViewById<TextView>(R.id.tryAgainMsg)
+        val streak = findViewById<TextView>(R.id.streak)
         val tvIDs = arrayOf(
             arrayOf(R.id.r0c0,R.id.r0c1,R.id.r0c2,R.id.r0c3),
             arrayOf(R.id.r1c0,R.id.r1c1,R.id.r1c2,R.id.r1c3),
             arrayOf(R.id.r2c0,R.id.r2c1,R.id.r2c2,R.id.r2c3)
         )
+
+        // Streak
+        fun setStreak() {
+            streak.text = SpannableStringBuilder()
+                .append(getString(R.string.streak))
+                .color(teal) { append(streakCounter.toString()) }
+        }
+        setStreak()
 
         userInput.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -75,6 +86,8 @@ class MainActivity : AppCompatActivity() {
 
                 // On Correct Guess
                 if (checkGuess(word)) {
+                    streakCounter++
+                    setStreak()
                     userInput.isEnabled = false
                     Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
 
@@ -91,6 +104,8 @@ class MainActivity : AppCompatActivity() {
                 }
                 tries++
                 if (tries == 3) {
+                    streakCounter = 0
+                    setStreak()
                     userInput.isEnabled = false
                     tryAgainMsg.text = answer
                     tryAgainMsg.isVisible = true
@@ -110,6 +125,7 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(mIntent)
             tries = 0
             wordToGuess = FourLetterWordList.getRandomFourLetterWord()
+            println(wordToGuess)
             answer = SpannableStringBuilder()
                 .append("Answer: ")
                 .color(teal, { append(wordToGuess+"\n")})
