@@ -83,7 +83,7 @@ class MainActivity : AppCompatActivity() {
             println(word)
             if (checkValid(word)) {
                 insertWord(word, tvIDs)
-
+                tries++
                 // On Correct Guess
                 if (checkGuess(word)) {
                     streakCounter++
@@ -102,8 +102,7 @@ class MainActivity : AppCompatActivity() {
                     val konfettiView = findViewById<KonfettiView>(R.id.konfettiView)
                     konfettiView.start(party)
                 }
-                tries++
-                if (tries == 3) {
+                else if (tries == 3) {
                     streakCounter = 0
                     setStreak()
                     userInput.isEnabled = false
