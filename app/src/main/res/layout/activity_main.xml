@@ -55,12 +55,11 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="410dp"
-        android:layout_height="294dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/userInputContainer">
 
@@ -251,13 +250,14 @@
 
     <TextView
         android:id="@+id/tips"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="260dp"
+        android:layout_height="50dp"
         android:lines="2"
         android:text="-Teal     : letter in correct spot\n-Yellow : letter in wrong spot"
+        android:gravity="center"
         android:textSize="18sp"
         android:textColor="@color/white"
-        android:background="@color/black"
+        android:background="@drawable/rounded_corner"
         app:layout_constraintBottom_toTopOf="@+id/resetBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -265,6 +265,18 @@
         app:layout_constraintTop_toBottomOf="@+id/tableLayout"
         app:layout_constraintVertical_bias="0.076" />
 
+    <TextView
+        android:id="@+id/tryAgainMsg"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tryAgainMsg"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/resetBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
     <Button
         android:id="@+id/resetBtn"
         android:layout_width="wrap_content"

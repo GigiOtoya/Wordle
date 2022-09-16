@@ -7,6 +7,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import nl.dionsegijn.konfetti.core.Party
 import nl.dionsegijn.konfetti.core.Position
 import nl.dionsegijn.konfetti.core.emitter.Emitter
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val userInput = findViewById<EditText>(R.id.userInput)
         val submitBtn = findViewById<Button>(R.id.submitBtn)
         val resetBtn = findViewById<Button>(R.id.resetBtn)
+        val tryAgainMsg = findViewById<TextView>(R.id.tryAgainMsg)
         val tvIDs = arrayOf(
             arrayOf(R.id.r0c0,R.id.r0c1,R.id.r0c2,R.id.r0c3),
             arrayOf(R.id.r1c0,R.id.r1c1,R.id.r1c2,R.id.r1c3),
@@ -69,6 +71,7 @@ class MainActivity : AppCompatActivity() {
             userInput.text = null
             if (tries == 3) {
                 userInput.isEnabled = false
+                tryAgainMsg.isVisible = true
             }
         }
 
