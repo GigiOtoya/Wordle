@@ -257,7 +257,6 @@
         android:gravity="center"
         android:textSize="18sp"
         android:textColor="@color/white"
-        android:background="@drawable/rounded_corner"
         app:layout_constraintBottom_toTopOf="@+id/resetBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
